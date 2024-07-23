@@ -10,6 +10,7 @@ export default {
         colors: {
           'yellow-light': '#FFF3E3',
           'yellow-dark': '#B88E2F',
+          'beige-light': '#FAF3EA',
         },
         spacing: {
           982: '982px',
