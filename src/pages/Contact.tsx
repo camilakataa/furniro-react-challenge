@@ -2,14 +2,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Banner from "../components/Banner";
 
-const Shop = () => {
+const Contact = () => {
   return (
     <>
         <Header />
-        <Banner namePage="Shop" />
+        <Banner namePage="Contact" />
         <Footer />
     </>
   )
 }
 
-export default Shop
+export default Contact

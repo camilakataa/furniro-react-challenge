@@ -1,9 +1,11 @@
+interface NameProp {
+    name: string;
+}
 
-
-const TitlePage = (titlePage) => {
+const TitlePage: React.FC<NameProp> = ({name}) => {
   return (
     <div className="text-[48px] font-medium">
-        {titlePage}
+        {name}
     </div>
   )
 }

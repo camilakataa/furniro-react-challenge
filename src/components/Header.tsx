@@ -1,6 +1,7 @@
 import LogoImg from '../assets/logo-furniro.png';
 import LoginImg from '../assets/login-icon.png';
-import CartImg from '../assets/cart-icon.png'
+import CartImg from '../assets/cart-icon.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -10,10 +11,10 @@ const Header = () => {
           <h2 className='font-montserrat font-bold text-4xl'>Furniro</h2>
         </div>
         <nav className='flex items-center justify-center gap-4 lg:gap-14'>
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
+          <Link to="/">Home</Link>
+          <Link to="/Shop">Shop</Link>
           <a href="#">About</a>
-          <a href="#">Contact</a>
+          <Link to="/Contact">Contact</Link>
         </nav>
         <div className='flex items-center justify-center gap-8'>
           <img className='h-4' src={LoginImg} alt="login-icon" />

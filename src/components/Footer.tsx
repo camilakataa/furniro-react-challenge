@@ -2,6 +2,7 @@ import FacebookIcon from "../assets/facebook 1.png";
 import InstaIcon from "../assets/instagram 1.png";
 import TwitterIcon from "../assets/twitter 1.png";
 import LinkedinIcon from "../assets/linkedin 1.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -42,10 +43,10 @@ const Footer = () => {
             <div className="pb-7 lg:mr-20">
               <h3 className="text-gray-400 pb-3 lg:pb-[50px] xl:mr-20">Links</h3>
               <nav className="flex gap-6 font-medium lg:flex-col lg:gap-10">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
+                <Link to="/">Home</Link>
+                <Link to="/Shop">Shop</Link>
                 <a href="#">About</a>
-                <a href="#">Contact</a>
+                <Link to="/Contact">Contact</Link>
               </nav>
             </div>
             <div className="pb-7 lg:mr-16">
