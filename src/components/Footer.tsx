@@ -45,7 +45,7 @@ const Footer = () => {
               <nav className="flex gap-6 font-medium lg:flex-col lg:gap-10">
                 <Link to="/">Home</Link>
                 <Link to="/Shop">Shop</Link>
-                <a href="#">About</a>
+                <Link to="/About">About</Link>
                 <Link to="/Contact">Contact</Link>
               </nav>
             </div>
