@@ -1,15 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import BannerDiscover from "../components/BannerDiscover";
 
-const Home = () => {
+const Shop = () => {
   return (
     <>
         <Header />
-        <BannerDiscover />
         <Footer />
     </>
   )
 }
 
-export default Home
+export default Shop

@@ -8,7 +8,8 @@ export default {
           montserrat: ['Montserrat', 'sans-serif'],
         },
         colors: {
-          'custom-gray-900': 'rgba(14, 16, 18, 1)',
+          'yellow-light': '#FFF3E3',
+          'yellow-dark': '#B88E2F',
         },
         spacing: {
           982: '982px',

@@ -40,7 +40,7 @@ const Footer = () => {
           </div>
           <div className="lg:flex">
             <div className="pb-7 lg:mr-20">
-              <h3 className="text-gray-400 pb-3 lg:pb-[50px]">Links</h3>
+              <h3 className="text-gray-400 pb-3 lg:pb-[50px] xl:mr-20">Links</h3>
               <nav className="flex gap-6 font-medium lg:flex-col lg:gap-10">
                 <a href="#">Home</a>
                 <a href="#">Shop</a>
