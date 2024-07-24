@@ -8,7 +8,7 @@ const ShareSection = () => {
                 <p className='text-[20px] font-semibold'>Share your setup with</p>
                 <h2 className='text-[40px] font-bold'>#FurniroFurniture</h2>
             </div>
-            <img src={Mosaic} alt="" />
+            <img className='w-full' src={Mosaic} alt="" />
         </div>
     </>
   )
