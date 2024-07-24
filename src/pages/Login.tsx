@@ -1,19 +1,17 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Banner from "../components/Banner";
 import Benefits from "../components/Benefits";
-import BillingDetails from "../components/BillingDetails";
+import LoginSection from "../components/LoginSection";
 
-const Checkout = () => {
+const Login = () => {
   return (
     <>
         <Header />
-        <Banner namePage="Checkout" />
-        <BillingDetails />
+        <LoginSection />
         <Benefits />
         <Footer />
     </>
   )
 }
 
-export default Checkout
+export default Login
