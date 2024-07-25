@@ -6,6 +6,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/Cart' element={<Cart />} />
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Login' element={<Login />} />
+        <Route path='/Register' element={<Register />} />
       </Routes>
     </>
   )
