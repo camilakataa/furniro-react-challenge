@@ -19,7 +19,7 @@ const CardProduct = (productId) => {
 
   return (
     <>
-      <Link to="/SingleProduct">
+      <Link to={`/SingleProduct/${products[id]?.id}`}>
         <div className="w-[285px] h-[446px] cursor-pointer hover:brightness-50">
           <div
             className="bg-cover bg-center w-[285px] h-[301px] p-4 flex justify-end gap-2"

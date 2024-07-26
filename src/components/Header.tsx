@@ -12,12 +12,10 @@ const Header = () => {
 
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async(user) => {
-      console.log(user);
       const docRef = doc(dbUsers, "Users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setUserDetails(docSnap.data());
-        console.log(docSnap.data())
       } else {
         console.log("User is not logged in")
       }

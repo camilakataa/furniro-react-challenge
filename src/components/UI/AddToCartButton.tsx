@@ -1,7 +1,7 @@
 
 const AddToCartButton = () => {
   return (
-    <button className="w-[202px] h-[48px] text-yellow-dark font-semibold text-base">
+    <button className="w-[215px] h-[64px] border-solid border rounded-lg">
         Add to cart
     </button>
   )

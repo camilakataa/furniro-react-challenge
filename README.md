@@ -23,6 +23,7 @@ Furniro is a fictional furniture store with all categories of furniture products
 This project contains the home page, with information about the Furniro shopping. <br>
 
 To run this application, it's necessary to clone this repository and install all the dependencies (wich can be seen in [*tools content*](#tools)).<br> 
+To run the JSON server, it's necessary to use the command "npx json-server ./mock/_database.json" to access the mock api.
 
 
 ## Figma
