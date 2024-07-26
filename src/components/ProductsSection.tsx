@@ -41,7 +41,7 @@ const ProductsSection = () => {
         <div >
           <ul className="flex flex-wrap justify-center items-center gap-6 px-6">
             {sortedProducts
-            .slice(0, 11)
+            .slice(0, 12)
             .map((product, index) => {
               return (<li key={index}>
                 <CardProduct id={product.id} />

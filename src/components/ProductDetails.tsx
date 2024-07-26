@@ -43,6 +43,7 @@ const ProductDetails = (props) => {
               {products[id]?.images.gallery.map((image, index) => {
                 return (
                   <li
+                    key={index}
                     className="h-[80px] w-[76px] bg-cover border-solid border-4 border-beige-light rounded-lg"
                     style={{ backgroundImage: `url(${image})` }}
                   ></li>

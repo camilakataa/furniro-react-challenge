@@ -8,10 +8,12 @@ import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Routes, Route } from 'react-router-dom'
+import ScrollToTop from './pages/ScrollToTop';
 
 function App() {
   return (
     <>
+    <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/Shop' element={<Shop />} />
