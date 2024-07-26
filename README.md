@@ -25,7 +25,6 @@ This project contains the home page, with information about the Furniro shopping
 To run this application, it's necessary to clone this repository and install all the dependencies (wich can be seen in [*tools content*](#tools)).<br> 
 To run the JSON server, it's necessary to use the command "npx json-server ./mock/_database.json" to access the mock api.
 
-
 ## Figma
 
 The challenge was based accordingly to the design and user interface in 🔗[Figma](https://www.figma.com/design/E1F9AbyIRppkO2Ro1oP2tj/Desafio-3?node-id=117-336&t=kFuD7FGniomCe5mR-0)
@@ -39,6 +38,7 @@ The challenge was based accordingly to the design and user interface in 🔗[Fig
 🔨 <b>JSON server</b><br>
 🔨 <b>Firebase</b><br>
 🔨 <b>Axios</b><br>
+🔨 <b>Concurrently</b><br>
 
 ## Screenshots
 
