@@ -7,8 +7,8 @@
       "category": "Sofás",
       "tags": ["Sofá-cama", "Sala", "Quarto"],
       "normalPrice": 3199.99,
-      "salePrice": 1844.98,
-      "discountPercentage": 0.42,
+      "salePrice": 3199.99,
+      "discountPercentage": false,
       "new": true,
       "description": {
         "short": "Alguma dúvida de que um móvel como o Sofá-Cama Génova é capaz de dar um novo visual para o seu ambiente?",
@@ -35,7 +35,7 @@
     {
       "id": 2,
       "sku": "204089",
-      "title": "Sofá-Cama 3 Lugares Casal Premium Suede Cinza",
+      "title": "Sofá-Cama Suede",
       "category": "Sofás",
       "tags": ["Sofá-cama", "Sala", "Quarto"],
       "normalPrice": 1705.99,
@@ -43,7 +43,7 @@
       "discountPercentage": 0.31,
       "new": false,
       "description": {
-        "short": "O Sofá-Cama Premium vai renovar os seus dias de descanso",
+        "short": "O Sofá vai renovar seu descanso",
         "long": "Dono de um visual que promete levar sofisticação e aconchego para a sua casa, o Sofá-Cama Premium vai renovar os seus dias de descanso, além de ser uma peça digna de elogios em qualquer decoração. Por dentro, ele tem madeira de reflorestamento na composição, uma ótima característica para o uso diário. Já por fora, o suede faz com que todo mundo tenha vontade de ficar nele sem hora para sair, assim como aprimora os seus momentos de lazer em frente à televisão. Ah, para fechar com chave de ouro, ele se transforma rapidamente de sofá para cama para se adaptar à sua rotina e necessidades. Muitos benefícios para um lar que merece ser igualmente incrível ;)"
       },
       "colors": [
