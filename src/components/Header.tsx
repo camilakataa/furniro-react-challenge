@@ -56,7 +56,7 @@ const Header = () => {
           ) : ( 
             <Link to="/Register"><img className='h-4' src={LoginImg} alt="login-icon" /></Link>
           )}
-          <img className='h-5' src={CartImg} alt="cart-icon" />
+          <Link to="/Cart"><img className='h-5 ' src={CartImg} alt="cart-icon" /></Link>
         </div>
     </div>
   )
