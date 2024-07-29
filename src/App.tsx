@@ -9,10 +9,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Routes, Route } from 'react-router-dom'
 import ScrollToTop from './pages/ScrollToTop';
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
-    <>
+    <CartProvider>
     <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />}/>
@@ -25,7 +26,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
       </Routes>
-    </>
+    </CartProvider>
   )
 }
 

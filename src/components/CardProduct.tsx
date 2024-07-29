@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const CardProduct = (productId) => {
+interface ProductProps {
+  productId: number;
+  id: number;
+}
+
+const CardProduct: React.FC<ProductProps> = (productId) => {
   const [products, setProducts] = useState([]);
   const { id } = productId;
 
@@ -47,14 +52,22 @@ const CardProduct = (productId) => {
             <p className="font-medium text-gray-600 text-sm">
               {products[id]?.description.short}
             </p>
-            <div className="flex justify-between items-center">
-              <p className="font-semibold text-xl">
-                R$ {products[id]?.salePrice}
-              </p>
-              <p className="font-normal text-base line-through text-gray-400">
-                R$ {products[id]?.normalPrice}
-              </p>
-            </div>
+            {products[id]?.discountPercentage == 0 ? (
+              <div className="flex justify-between items-center">
+                <p className="font-semibold text-xl">
+                  R$ {products[id]?.normalPrice}
+                </p>
+              </div>
+            ) : (
+              <div className="flex justify-between items-center">
+                <p className="font-semibold text-xl">
+                  R$ {products[id]?.salePrice}
+                </p>
+                <p className="font-normal text-base line-through text-gray-400">
+                  R$ {products[id]?.normalPrice}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Link>
