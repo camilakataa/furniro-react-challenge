@@ -7,30 +7,25 @@ interface CartItem extends IProducts {
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (product: IProducts, qty: number) => void;
+  addToCart: (item: CartItem) => void;
   removeFromCart: (productId: number) => void;
   updateItemQuantity: (id: number, qty: number) => void;
 }
 
-interface CartProviderProps {
-  children: ReactNode;
-}
-
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (product: IProducts, qty: number) => {
-    setCartItems(prevItems => {
-      const itemIndex = prevItems.findIndex(item => item.id === product.id);
-      if (itemIndex > -1) {
-        const newItems = [...prevItems];
-        newItems[itemIndex].qty += qty;
-        return newItems;
-      } else {
-        return [...prevItems, { ...product, qty }];
+  const addToCart = (item: CartItem) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prevItems.map((i) =>
+          i.id === item.id ? { ...i, qty: i.qty + item.qty } : i
+        );
       }
+      return [...prevItems, item];
     });
   };
 

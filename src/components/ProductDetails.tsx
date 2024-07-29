@@ -28,10 +28,7 @@ const ProductDetails: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    const product = products.find((p) => p.id === productId);
-    if (product) {
-      addToCart(product, qty);
-    }
+    addToCart({ ...products[productId], qty });
   };
 
   useEffect(() => {
@@ -44,6 +41,7 @@ const ProductDetails: React.FC = () => {
         console.log(error);
       });
   }, [productId]);
+
 
   return (
     <>
