@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 interface ProductProps {
-  productId: number;
-  id: number;
+  productId?: number;
+  id?: number;
 }
 
 const CardProduct: React.FC<ProductProps> = (productId) => {
