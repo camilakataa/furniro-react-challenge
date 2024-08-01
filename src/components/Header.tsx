@@ -6,9 +6,11 @@ import { auth, dbUsers } from "../services/firebaseConfig";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useCart } from "../context/CartContext";
+import ModalCart from "./ModalCart";
 
 const Header = () => {
   const [userDetails, setUserDetails] = useState(null);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const { cartItems } = useCart();
 
   const getTotalItems = (): number => {
@@ -40,7 +42,13 @@ const Header = () => {
     }
   };
 
+  const toggleModal = () =>{
+    setOpenModal(!openModal)
+  }
+
   return (
+    <>
+    <ModalCart isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
     <div className="w-full bg-white flex py-6 justify-between flex-col gap-4 lg:pl-14 lg:pr-24 lg:flex-row lg:h-24">
       <div className="flex justify-center items-center gap-1">
         <img className="h-8" src={LogoImg} alt="logo" />
@@ -69,19 +77,20 @@ const Header = () => {
           </Link>
         )}
         {cartItems.length === 0 ? (
-          <Link to="/Cart" className="flex">
+          <div onClick={toggleModal} className="flex">
             <img className="h-5 " src={CartImg} alt="cart-icon" />
-          </Link>
+          </div>
         ) : (
-          <Link to="/Cart" className="flex">
+          <div onClick={toggleModal} className="flex">
             <img className="h-5 " src={CartImg} alt="cart-icon" />
             <div className="text-[12px] w-[18px] h-[18px] bg-red-600 rounded-full text-center text-white">
               {getTotalItems()}
             </div>
-          </Link>
+          </div>
         )}
       </div>
     </div>
+    </>
   );
 };
 
