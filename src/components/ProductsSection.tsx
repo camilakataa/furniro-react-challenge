@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import CardProduct from "./CardProduct";
 import ShowMoreButton from "./UI/ShowMoreButton";
 import axios from "axios";
+import { IProducts } from "../types/CartTypes";
+import { Link } from "react-router-dom";
 
 const ProductsSection = () => {
   const [products, setProducts] = useState([]);
@@ -42,7 +44,7 @@ const ProductsSection = () => {
           <ul className="flex flex-wrap justify-center items-center gap-6 px-6">
             {sortedProducts
             .slice(0, 12)
-            .map((product, index) => {
+            .map((product: IProducts, index) => {
               return (<li key={index}>
                 <CardProduct id={product.id} />
               </li>)
@@ -50,7 +52,9 @@ const ProductsSection = () => {
             )}
           </ul>
         </div>
+        <Link to="./Shop">
         <ShowMoreButton />
+        </Link>
       </div>
     </>
   );

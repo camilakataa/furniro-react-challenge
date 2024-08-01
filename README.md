@@ -17,13 +17,13 @@ Compass UOL - FrontEnd Challenge: Furniro Furniture<br>
 ## Challenge
 
 This challenge is from Compass UOL for the interns to complete and learn experiences. The main objective was to build a front-end development based on the design in Figma.<br>
-To accomplish this task, it was used React with TypeScript application.
+To accomplish this task, it was used React with TypeScript application.<br>
 
 Furniro is a fictional furniture store with all categories of furniture products, from sofas to tables. <br>
-This project contains the home page, with information about the Furniro shopping. <br>
+This project contains the home page, with information about the Furniro shopping.<br>
 
-To run this application, it's necessary to clone this repository and install all the dependencies (wich can be seen in [*tools content*](#tools)).<br> 
-To run the JSON server, it's necessary to use the command "npx json-server ./mock/_database.json" to access the mock api.
+To run this application, it's necessary to clone this repository and install all the dependencies (wich can be seen in [*tools content*](#tools)).<br>
+To run the JSON server, it's necessary to use the command "npm run server" to access the mock api.
 
 ## Figma
 
@@ -31,14 +31,13 @@ The challenge was based accordingly to the design and user interface in 🔗[Fig
 
 ## Tools
 
-🔨 <b>React with VITE</b><br>
-🔨 <b>TailwindCSS</b><br>
-🔨 <b>TypeScript</b><br>
-🔨 <b>React Router Dom</b><br>
-🔨 <b>JSON server</b><br>
-🔨 <b>Firebase</b><br>
-🔨 <b>Axios</b><br>
-🔨 <b>Concurrently</b><br>
+🔨 <b>React with VITE</b> application<br>
+🔨 <b>TypeScript</b>: to create the components<br>
+🔨 <b>TailwindCSS</b>: for styling<br>
+🔨 <b>React Router Dom</b>: to navigate<br>
+🔨 <b>JSON server</b>: for mock <br>
+🔨 <b>Firebase</b>: for authentication<br>
+🔨 <b>Axios</b>: to fetch the data<br>
 
 ## Screenshots
 
@@ -53,10 +52,10 @@ The challenge was based accordingly to the design and user interface in 🔗[Fig
 
 While developing this web page, I faced some challenges that helped me to learn experience. Here are some examples:
 
-- To create the Donate and Adopt Modals: I was not familiar to the tag < dialog >, and I had to do a search about how it works and how to open and close the Modals
-- To style the radio inputs in the payment method in the Donate Modal: Basic, I had to disable the appearance of the input and do a style in the label, increasing the hit area to select the radio.
-- The forms validation: To prevent the forms being submitted without the correct information, I had to manipulate the input values with regular expressions (regex), which was something new for me. With the correct pattern, the forms can be submitted.
-- This project don't have mobile version: The responsive design was optional and I didn't have time to do it, so I intend to do it later.
+- The production timeline posed a challenge. I had to organize the tasks, starting with those I was more familiar with and then moving on to the more detailed tasks;
+- The authentication task was new for me, so I took some time to register the users and to verify the logins in Firebase;
+- To do the mock using JSON Server was a challenge and also took some time to complete with all the products, but I had help from others colleagues;
+- To use the context to implement the Shopping Cart with the functions to add and to remove items, it's an achievement
 
 These experiences and more that I didn't list taught me valuable lessons in adaptability and perseverance, enhancing my web delevopment skills.
 

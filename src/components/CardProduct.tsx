@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { IProducts } from "../types/CartTypes";
 
 interface ProductProps {
   productId?: number;
@@ -8,7 +9,7 @@ interface ProductProps {
 }
 
 const CardProduct: React.FC<ProductProps> = (productId) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<IProducts[]>([]);
   const { id } = productId;
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const CardProduct: React.FC<ProductProps> = (productId) => {
           >
             {products[id]?.discountPercentage ? (
               <div className="bg-highlight-pink w-[48px] h-[48px] rounded-full flex justify-center items-center text-white">
-                {products[id].discountPercentage * 100}%
+                {(products[id].discountPercentage * 100).toFixed(0)}%
               </div>
             ) : (
               <div></div>
