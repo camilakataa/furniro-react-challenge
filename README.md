@@ -38,6 +38,7 @@ The challenge was based accordingly to the design and user interface in 🔗[Fig
 🔨 <b>JSON server</b>: for mock <br>
 🔨 <b>Firebase</b>: for authentication<br>
 🔨 <b>Axios</b>: to fetch the data<br>
+🔨 <b>Vitest and React Testing Library</b>: for tests<br>
 
 ## Screenshots
 
