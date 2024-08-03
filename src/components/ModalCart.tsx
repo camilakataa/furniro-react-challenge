@@ -3,8 +3,6 @@ import DeleteIcon from "../assets/deleteIcon.png";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-import Sofa from "../assets/sofas (1).png";
-
 interface isOpenType {
   isOpen: boolean;
   setModalOpen: React.MouseEventHandler;
@@ -37,7 +35,7 @@ const ModalCart: React.FC<isOpenType> = ({ isOpen, setModalOpen }) => {
     return (
       <div className="w-full h-full fixed bg-[rgb(0,0,0,0.5)] z-10">
         <div className="absolute top-0 right-0">
-          <div className="bg-white w-[417px] h-[746px] p-8 flex flex-col justify-between">
+          <div className="bg-white w-[417px] h-[580px] p-8 flex flex-col justify-between">
             <div className="flex justify-between items-center">
               <h2 className="text-[24px] font-semibold border-solid border-x-0 border-t-0 border-b border-gray-400 pb-6">
                 Shopping Cart
