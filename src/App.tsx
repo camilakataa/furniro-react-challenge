@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import { Routes, Route } from 'react-router-dom'
 import ScrollToTop from './pages/ScrollToTop';
 import { CartProvider } from "./context/CartContext";
+import Success from "./pages/Success";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
+        <Route path='/Success' element={<Success />} />
       </Routes>
     </CartProvider>
   )

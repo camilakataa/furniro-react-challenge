@@ -1,9 +1,13 @@
+import { useEffect, useState } from "react";
 import TrashIcon from "../assets/trash.png";
-import CheckoutButton from "./UI/CheckoutButton";
 import { useCart } from "../context/CartContext";
+import { auth, dbUsers } from "../services/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const CartTotal: React.FC = () => {
   const { cartItems, removeFromCart, updateItemQuantity } = useCart();
+  const [userDetails, setUserDetails] = useState(null);
 
   const priceDiscount = (price: number, discount: number): number => {
     return price * (1 - discount);
@@ -26,6 +30,22 @@ const CartTotal: React.FC = () => {
   const handleIncreaseQty = (id: number, qty: number) => {
     updateItemQuantity(id, qty + 1)
   }
+
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      const docRef = doc(dbUsers, "Users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserDetails(docSnap.data());
+      } else {
+        console.log("User is not logged in");
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center gap-10 py-20 px-4 lg:flex-row lg:items-start">
@@ -125,7 +145,19 @@ const CartTotal: React.FC = () => {
             </div>
           </div>
         )}
-        <CheckoutButton />
+         {userDetails ? (
+                <Link to="/Checkout">
+                  <button className="border-solid border px-7 py-2 rounded-full text-[18px]">
+                    Checkout
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/Login">
+                  <button className="border-solid border px-7 py-2 rounded-full text-[18px]">
+                    Login
+                  </button>
+                </Link>
+              )}
       </div>
     </div>
   );

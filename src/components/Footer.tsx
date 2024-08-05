@@ -2,7 +2,7 @@ import FacebookIcon from "../assets/facebook 1.png";
 import InstaIcon from "../assets/instagram 1.png";
 import TwitterIcon from "../assets/twitter 1.png";
 import LinkedinIcon from "../assets/linkedin 1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";
 
@@ -13,6 +13,7 @@ const newsletterSchema = z.object({
 const Footer = () => {
   const [emailData, setEmailData] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -23,8 +24,7 @@ const Footer = () => {
     e.preventDefault();
     try {
       newsletterSchema.parse({ email: emailData });
-      setEmailData("");
-      setErrors({});
+      navigate("/Success")
     } catch (error) {
       if (error instanceof z.ZodError) {
         const formattedErrors = error.errors.reduce((acc, curr) => {
@@ -37,6 +37,7 @@ const Footer = () => {
       }
     }
   };
+  
 
   return (
     <>

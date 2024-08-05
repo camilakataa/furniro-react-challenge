@@ -36,7 +36,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      window.location.href = "./";
+      window.location.href = "/";
     } catch (error) {
       console.log(error.message);
     }

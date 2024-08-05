@@ -5,6 +5,7 @@ import { auth, dbUsers } from "../services/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import axios from "axios";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 
 const billingDetailsSchema = z.object({
   zipCode: z.string().length(8, { message: "Zip Code must be 8 digits" }),
@@ -16,6 +17,7 @@ const BillingDetails = () => {
   const [zipCode, setZipCode] = useState("");
   const [address, setAddress] = useState({});
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const priceDiscount = (price: number, discount: number): number => {
     return price * (1 - discount);
@@ -81,8 +83,7 @@ const BillingDetails = () => {
     e.preventDefault();
     try {
       billingDetailsSchema.parse({ zipCode: zipCode });
-      setZipCode("");
-      setErrors({});
+      navigate("/Success")
     } catch (error) {
       if (error instanceof z.ZodError) {
         const formattedErrors = error.errors.reduce((acc, curr) => {
