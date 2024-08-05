@@ -50,13 +50,13 @@ const ModalCategories: React.FC<isOpenType> = ({
               />
             </div>
             <div className="pt-4">
-              <h3 className="pb-2">Select Category:</h3>
-              <ul>
-                <li onClick={() => handleOnClick()} className="font-light text-[14px] hover:text-yellow-dark cursor-pointer">All</li>
+              <h3 className="pb-4">Select Category:</h3>
+              <ul className="flex flex-wrap gap-2">
+                <li onClick={() => handleOnClick()} className="font-light text-[14px] text-gray-500 hover:text-yellow-dark cursor-pointer border-solid border border-gray-400 rounded-lg p-2">All</li>
                 {categories.map((category, index) => (
                   <li
                     onClick={() => setSelectedCategory(category)}
-                    className="font-light text-[14px] hover:text-yellow-dark cursor-pointer"
+                    className="font-light text-[14px] text-gray-500 hover:text-yellow-dark cursor-pointer border-solid border border-gray-400 rounded-lg p-2"
                     key={index}
                   >
                     {category}

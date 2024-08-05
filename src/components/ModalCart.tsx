@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import ClearCart from "../assets/clear-cart.png";
 import DeleteIcon from "../assets/deleteIcon.png";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { auth, dbUsers } from "../services/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 
 interface isOpenType {
   isOpen: boolean;
@@ -10,6 +13,7 @@ interface isOpenType {
 
 const ModalCart: React.FC<isOpenType> = ({ isOpen, setModalOpen }) => {
   const { cartItems, removeFromCart, clearCart } = useCart();
+  const [userDetails, setUserDetails] = useState(null);
 
   const priceDiscount = (price: number, discount: number): number => {
     return price * (1 - discount);
@@ -31,11 +35,27 @@ const ModalCart: React.FC<isOpenType> = ({ isOpen, setModalOpen }) => {
     );
   };
 
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      const docRef = doc(dbUsers, "Users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserDetails(docSnap.data());
+      } else {
+        console.log("User is not logged in");
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
   if (isOpen) {
     return (
       <div className="w-full h-full fixed bg-[rgb(0,0,0,0.5)] z-10">
         <div className="absolute top-0 right-0">
-          <div className="bg-white w-[417px] h-[580px] p-8 flex flex-col justify-between">
+          <div className="bg-white w-[390px] h-[580px] p-8 flex flex-col justify-between">
             <div className="flex justify-between items-center">
               <h2 className="text-[24px] font-semibold border-solid border-x-0 border-t-0 border-b border-gray-400 pb-6">
                 Shopping Cart
@@ -82,23 +102,34 @@ const ModalCart: React.FC<isOpenType> = ({ isOpen, setModalOpen }) => {
               </div>
               <div className="flex justify-between pr-20">
                 <p>Subtotal</p>
-                <p className="text-yellow-dark font-semibold">R$ {cartTotal().toFixed(2)}</p>
+                <p className="text-yellow-dark font-semibold">
+                  R$ {cartTotal().toFixed(2)}
+                </p>
               </div>
             </div>
             <div className="border-solid border-x-0 border-b-0 border-t border-gray-400 pt-6 flex justify-between items-center">
               <Link to="/Cart">
-                <button className="border-solid border px-6 py-2 rounded-full text-[12px]">
+                <button className="border-solid border px-7 py-2 rounded-full text-[12px]">
                   Cart
                 </button>
               </Link>
-              <Link to="/Checkout">
-                <button className="border-solid border px-6 py-2 rounded-full text-[12px]">
-                  Checkout
-                </button>
-              </Link>
+              {userDetails ? (
+                <Link to="/Checkout">
+                  <button className="border-solid border px-5 py-2 rounded-full text-[12px]">
+                    Checkout
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/Login">
+                  <button className="border-solid border px-7 py-2 rounded-full text-[12px]">
+                    Login
+                  </button>
+                </Link>
+              )}
+
               <button
                 onClick={setModalOpen}
-                className="border-solid border px-6 py-2 rounded-full text-[12px]"
+                className="border-solid border px-7 py-2 rounded-full text-[12px]"
               >
                 Close Cart
               </button>

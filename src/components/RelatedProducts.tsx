@@ -19,8 +19,10 @@ const RelatedProducts = () => {
         setProducts(response.data);
 
         const currentProduct = response.data.find((product: IProducts) => product.id === productId);
-        if (currentProduct) {
-          setProductCategory(currentProduct.category);
+        if(currentProduct) {
+          setProductCategory(currentProduct.category)
+        } else {
+          console.log('nao funciona')
         }
       })
       .catch(function (error) {
@@ -28,7 +30,7 @@ const RelatedProducts = () => {
       });
 
   }, [productId]);
-
+  
   const filteredProducts = products?.filter((product) => product.category === productCategory && product.id !== productId );
 
   const handleOnClick = () => {

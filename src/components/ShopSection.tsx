@@ -39,7 +39,6 @@ const ShopSection = () => {
   }
 
   const uniqueCategories = new Set(products.map((product) => product.category));
-  
 
   return (
     <>
@@ -62,7 +61,15 @@ const ShopSection = () => {
             {filteredProducts.length > itemsPerPage ? itemsPerPage : filteredProducts.length}
           </p>
           <p>Sort by</p>
-          <p className="bg-white py-3 px-8 text-gray-400 text-light">Default</p>
+            {filteredProducts.length === 59 ? (
+              <p className="bg-white py-3 px-8 text-gray-400 text-light">
+              Default
+              </p>
+              ) : (
+                <p className="bg-white py-3 px-8 text-gray-400 text-light">
+                {selectedCategory}
+                </p>
+              )}
         </div>
       </div>
       <ModalCategories 

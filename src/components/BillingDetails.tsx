@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import PlaceOrderButton from "./UI/PlaceOrderButton";
 import { useCart } from "../context/CartContext";
+import { auth, dbUsers } from "../services/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import axios from "axios";
 
 const BillingDetails = () => {
   const { cartItems } = useCart();
+  const [userDetails, setUserDetails] = useState(null);
+  const [zipCode, setZipCode] = useState('');
+  const [address, setAddress] = useState({})
 
   const priceDiscount = (price: number, discount: number): number => {
     return price * (1 - discount);
@@ -24,6 +31,48 @@ const BillingDetails = () => {
     );
   };
 
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      const docRef = doc(dbUsers, "Users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserDetails(docSnap.data());
+      } else {
+        console.log("User is not logged in");
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+
+    const searchAddress = async () => {
+      axios
+      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
+      .then(function(response) {
+        setAddress(response.data)
+        console.log(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+
+    if(zipCode.length === 8) {
+      searchAddress();
+    } else {
+      setAddress(null);
+    }
+
+  }, [zipCode]);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    if (/^\d*$/.test(value)) {
+      setZipCode(value);
+    }
+  }
+
   return (
     <form className="flex flex-col justify-center items-center lg:flex-row lg:items-start lg:gap-10 xl:gap-28 p-14">
       <div className="max-w-[608px]">
@@ -35,8 +84,9 @@ const BillingDetails = () => {
                 First Name
               </label>
               <input
-                className="h-[75px] w-[150px] md:w-[211px] border-solid border border-gray-500 rounded-md"
+                className="h-[75px] w-[150px] md:w-[211px] p-2 border-solid border border-gray-500 rounded-md"
                 type="text"
+                value={userDetails ? userDetails.firstName : ""}
               />
             </div>
             <div className="flex flex-col">
@@ -44,8 +94,9 @@ const BillingDetails = () => {
                 Last Name
               </label>
               <input
-                className="h-[75px] w-[150px] md:w-[211px] border-solid border border-gray-500 rounded-md"
+                className="h-[75px] w-[150px] md:w-[211px] p-2 border-solid border border-gray-500 rounded-md"
                 type="text"
+                value={userDetails ? userDetails.lastName : ""}
               />
             </div>
           </div>
@@ -54,56 +105,62 @@ const BillingDetails = () => {
               Company Name (optional)
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
             />
             <label className="pb-4" htmlFor="">
               Zip Code
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              onChange={handleInputChange}
             />
             <label className="pb-4" htmlFor="">
               Country/ Region
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              value={address ? "Brazil" : " "}
             />
             <label className="pb-4" htmlFor="">
               Street address
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              value={address ? address.logradouro : " "}
             />
             <label className="pb-4" htmlFor="">
               Town/ City
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              value={address ? address.localidade : " "}
             />
             <label className="pb-4" htmlFor="">
               Province
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              value={address ? address.bairro : " "}
             />
             <label className="pb-4" htmlFor="">
               Add-on address
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
+              value={userDetails ? userDetails.email : ""}
             />
             <label className="pb-4" htmlFor="">
               Email address
             </label>
             <input
-              className="h-[75px] border-solid border border-gray-500 rounded-md mb-14"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-14"
               type="email"
             />
             <input
