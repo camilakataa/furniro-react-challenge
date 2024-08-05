@@ -43,10 +43,10 @@ The challenge was based accordingly to the design and user interface in 🔗[Fig
 ## Screenshots
 
 ### Desktop Screen
-<img src="" alt="desktop screen">
+<img src="./src/assets/bg-desktop.JPG" alt="desktop screen">
 
 ### Mobile Screen
-<img width="360px" src="" alt="mobile screen">
+<img width="360px" src="./src//assets/bg-mobile.JPG" alt="mobile screen">
 
 
 ## Difficulties
