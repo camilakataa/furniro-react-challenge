@@ -63,7 +63,7 @@ const Header = () => {
       <div className="flex items-center justify-center gap-8">
         {userDetails ? (
           <>
-            <p>Olá, {userDetails.firstName}!</p>
+            <p>Hello, {userDetails.firstName}!</p>
             <button
               onClick={handleLogout}
               className="border-solid border rounded-2xl p-2 text-sm hover:bg-gray-100"

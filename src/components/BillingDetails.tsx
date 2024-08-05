@@ -4,12 +4,18 @@ import { useCart } from "../context/CartContext";
 import { auth, dbUsers } from "../services/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import axios from "axios";
+import { z } from "zod";
+
+const billingDetailsSchema = z.object({
+  zipCode: z.string().length(8, { message: "Zip Code must be 8 digits" }),
+});
 
 const BillingDetails = () => {
   const { cartItems } = useCart();
   const [userDetails, setUserDetails] = useState(null);
-  const [zipCode, setZipCode] = useState('');
-  const [address, setAddress] = useState({})
+  const [zipCode, setZipCode] = useState("");
+  const [address, setAddress] = useState({});
+  const [errors, setErrors] = useState({});
 
   const priceDiscount = (price: number, discount: number): number => {
     return price * (1 - discount);
@@ -48,22 +54,20 @@ const BillingDetails = () => {
 
     const searchAddress = async () => {
       axios
-      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
-      .then(function(response) {
-        setAddress(response.data)
-        console.log(response.data)
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    }
+        .get(`https://viacep.com.br/ws/${zipCode}/json/`)
+        .then(function (response) {
+          setAddress(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
 
-    if(zipCode.length === 8) {
+    if (zipCode.length === 8) {
       searchAddress();
     } else {
       setAddress(null);
     }
-
   }, [zipCode]);
 
   const handleInputChange = (event) => {
@@ -71,10 +75,32 @@ const BillingDetails = () => {
     if (/^\d*$/.test(value)) {
       setZipCode(value);
     }
-  }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      billingDetailsSchema.parse({ zipCode: zipCode });
+      setZipCode("");
+      setErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const formattedErrors = error.errors.reduce((acc, curr) => {
+          acc[curr.path[0]] = curr.message;
+          return acc;
+        }, {});
+        setErrors(formattedErrors);
+      } else {
+        console.error(error.message);
+      }
+    }
+  };
 
   return (
-    <form className="flex flex-col justify-center items-center lg:flex-row lg:items-start lg:gap-10 xl:gap-28 p-14">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-center items-center lg:flex-row lg:items-start lg:gap-10 xl:gap-28 p-14"
+    >
       <div className="max-w-[608px]">
         <h2 className="font-semibold text-[36px]">Billing details</h2>
         <div>
@@ -108,15 +134,20 @@ const BillingDetails = () => {
               className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
             />
+
             <label className="pb-4" htmlFor="">
               Zip Code
             </label>
             <input
-              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
+              className="h-[75px] p-2 border-solid border border-gray-500 rounded-md"
               type="text"
               onChange={handleInputChange}
             />
-            <label className="pb-4" htmlFor="">
+            {errors.zipCode && (
+              <p className="text-red-500 pt-2">{errors.zipCode}</p>
+            )}
+
+            <label className="pb-4 mt-6" htmlFor="">
               Country/ Region
             </label>
             <input
@@ -154,7 +185,6 @@ const BillingDetails = () => {
             <input
               className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-6"
               type="text"
-              value={userDetails ? userDetails.email : ""}
             />
             <label className="pb-4" htmlFor="">
               Email address
@@ -162,6 +192,7 @@ const BillingDetails = () => {
             <input
               className="h-[75px] p-2 border-solid border border-gray-500 rounded-md mb-14"
               type="email"
+              value={userDetails ? userDetails.email : ""}
             />
             <input
               className="h-[75px] border-solid border border-gray-500 rounded-md mb-6 p-4 text-sm font-light"
@@ -211,10 +242,12 @@ const BillingDetails = () => {
 
         <div className="flex justify-between items-center pb-6 border-solid border border-x-0 border-t-0 border-gray-200">
           <p className="font-normal">Total</p>
-          <p className="font-bold text-[24px] text-yellow-dark">R$ {cartTotal().toFixed(2)}</p>
+          <p className="font-bold text-[24px] text-yellow-dark">
+            R$ {cartTotal().toFixed(2)}
+          </p>
         </div>
         <div className="pt-6 py-4">
-          <input type="radio" name="transfer" id="transfer" />
+          <input type="radio" name="transfer" id="transfer" checked />
           <label
             className="pl-4 text-gray-400 font-normal checked:text-black checked:font-bold"
             htmlFor="transfer"

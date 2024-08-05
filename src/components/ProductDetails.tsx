@@ -15,6 +15,11 @@ const ProductDetails: React.FC = () => {
   const productId = Number(id);
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image);
+  };
 
   const handleAddButton = () => {
     setQty(qty + 1);
@@ -66,6 +71,7 @@ const ProductDetails: React.FC = () => {
                     key={index}
                     className="h-[80px] w-[76px] bg-cover border-solid border-4 border-beige-light rounded-lg"
                     style={{ backgroundImage: `url(${image})` }}
+                    onClick={() => handleImageClick(image)}
                   ></li>
                 );
               })}
@@ -73,7 +79,7 @@ const ProductDetails: React.FC = () => {
             <div
               className="h-[400px] w-[320px] lg:h-[500px] lg:w-[423px] bg-cover bg-center border-solid border-4 border-beige-light rounded-lg"
               style={{
-                backgroundImage: `url(${products[productId]?.images.mainImage})`,
+                backgroundImage: `url(${selectedImage || products[productId]?.images.mainImage})`,
               }}
             ></div>
           </div>
